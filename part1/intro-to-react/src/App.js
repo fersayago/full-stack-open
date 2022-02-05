@@ -1,16 +1,26 @@
-import React from 'react'
+import React from 'react';
 
-const App = () => {
-  const now = new Date()
-  const a = 10
-  const b = 20
+const Hello = (props) => {
+
+  const nameFromProps = props.name
+  const ageFromProps = props.age
 
   return (
     <div>
-      <p>Hello world, it is {now.toString()}</p>
-      <p>
-        {a} plus {b} is {a + b}
-      </p>
+      <p>Hello {nameFromProps}, your age is {ageFromProps}</p>
+    </div>
+  )
+}
+
+const App = () => {
+  const name = "Fernando"
+  const age = 28
+
+  return (
+    <div>
+      <h1>Greetings</h1>
+      <Hello name="Ceci" age={26} />
+      <Hello name={name} age={age} />
     </div>
   )
 }
