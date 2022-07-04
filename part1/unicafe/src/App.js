@@ -8,12 +8,38 @@ const Statistics = (props) => {
   return (
     <div>
       <h1>Statistics</h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {total}</p>
-      <p>{total === 0 ? "average:" : `average: ${average / total}`}</p>
-      <p>{total === 0 ? "positive feedback:" : `positive feedback: ${(good / total) * 100}%`}</p>
+      {
+        total === 0 ?
+          <p>No feedback given</p> :
+          <table>
+            <tbody>
+              <tr>
+                <td>Good</td>
+                <td>{good}</td>
+              </tr>
+              <tr>
+                <td>Neutral</td>
+                <td>{neutral}</td>
+              </tr>
+              <tr>
+                <td>Bad</td>
+                <td>{bad}</td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td>{total}</td>
+              </tr>
+              <tr>
+                <td>Average</td>
+                <td>{average / total}</td>
+              </tr>
+              <tr>
+                <td>Positive %</td>
+                <td>{(good / total) * 100} %</td>
+              </tr>
+            </tbody>
+          </table>
+      }
     </div>
   )
 }
