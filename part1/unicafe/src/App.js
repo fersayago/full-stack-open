@@ -1,5 +1,14 @@
 import { useState } from 'react'
 
+const TableRow = (props) => {
+  return (
+    <tr>
+      <td>{props.text}</td>
+      <td>{props.value}</td>
+    </tr>
+  )
+}
+
 const Statistics = (props) => {
 
   const { good, neutral, bad, total, average } = props
@@ -13,35 +22,26 @@ const Statistics = (props) => {
           <p>No feedback given</p> :
           <table>
             <tbody>
-              <tr>
-                <td>Good</td>
-                <td>{good}</td>
-              </tr>
-              <tr>
-                <td>Neutral</td>
-                <td>{neutral}</td>
-              </tr>
-              <tr>
-                <td>Bad</td>
-                <td>{bad}</td>
-              </tr>
-              <tr>
-                <td>Total</td>
-                <td>{total}</td>
-              </tr>
-              <tr>
-                <td>Average</td>
-                <td>{average / total}</td>
-              </tr>
-              <tr>
-                <td>Positive %</td>
-                <td>{(good / total) * 100} %</td>
-              </tr>
+              <TableRow text="good" value={good} />
+              <TableRow text="neutral" value={neutral} />
+              <TableRow text="bad" value={bad} />
+              <TableRow text="total" value={total} />
+              <TableRow text="average" value={average/total} />
+              <TableRow text="positive percentage" value={(good/total)*100} />
             </tbody>
           </table>
       }
     </div>
   )
+}
+
+const Button = (props) => {
+  return (
+    <button onClick={props.handleClick}>
+      {props.text}
+    </button>
+  )
+
 }
 
 const App = () => {
@@ -72,9 +72,9 @@ const App = () => {
   return (
     <div>
       <h1>Give feedback</h1>
-      <button onClick={handleGood}>good</button>
-      <button onClick={handleNeutral}>neutral</button>
-      <button onClick={handleBad}>bad</button>
+      <Button handleClick={handleGood} text="good" />
+      <Button handleClick={handleNeutral} text="neutral" />
+      <Button handleClick={handleBad} text="bad" />
 
       <Statistics good={good} neutral={neutral} bad={bad} total={total} average={average} />
     </div>
